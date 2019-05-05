@@ -1,0 +1,120 @@
+.react-js-diagrams-canvas {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  cursor: move;
+  overflow: hidden;
+
+  .point {
+    //fill: rgba(white, 0.5);
+    &.selected {
+      //fill: rgb(0, 0, 116);
+    }
+  }
+
+  .selector {
+    position: absolute;
+    background-color: rgba(0, 192, 255, 0.2);
+    border: solid 2px rgb(0, 0, 116);
+  }
+
+  svg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform-origin: 0 0;
+    overflow: visible;
+  }
+
+  .node-view {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    pointer-events: none;
+    transform-origin: 0 0;
+    z-index: 1;
+  }
+
+  .node {
+    position: absolute;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    user-select: none;
+    cursor: move;
+    pointer-events: all;
+
+    &.selected {
+      > * {
+        border-color: rgb(0, 0, 116) !important;
+        -webkit-filter: drop-shadow(0 0 20px rgba(0, 0, 116, 0.5));
+      }
+    }
+  }
+
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 24%;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  path {
+    fill: none;
+    pointer-events: all;
+
+    &.selected {
+      stroke: rgb(0, 0, 116) !important;
+      stroke-dasharray: 10, 1;
+      animation: dash 3s linear infinite;
+    }
+  }
+
+  .port {
+    width: 15px;
+    height: 22px;
+    background: #092e5d;
+    &:hover, &.selected {
+      background: rgb(254, 255, 249);
+    }
+    border-radius: 2px;
+  }
+
+  .basic-node {
+    background-color: rgb(30, 30, 30);
+    border-radius: 5px;
+    font-family: "Times New Roman";
+    color: black;
+    border: solid 1px #092e5d;
+    overflow: visible;
+    font-size: 15px;
+    box-shadow: 0 0 10px rgba(black, 0.5);
+    width: 150px;
+    height: 50px;
+
+    .title {
+      background: rgba(black, 0.2);
+      display: flex;
+      white-space: nowrap;
+      > * {
+        align-self: center;
+      }
+      .fa {
+        padding: 5px;
+        opacity: 0.2;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1.0;
+        }
+      }
+      .name {
+        flex-grow: 1;
+        padding: 5px 5px;
+      }
+    }
+  }
+}
